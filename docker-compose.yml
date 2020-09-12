@@ -1,0 +1,30 @@
+version: '3'
+services:
+
+  ############
+  ## DAEMON ##
+  ############
+
+  daemon:
+
+    build:
+      context: ./daemon
+      args:
+        daemon_ver: v0.6.13
+
+    volumes:
+      # The following volumes must not be edited,
+      # as they are needed for the daemon to function properly.
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/var/lib/docker/containers:/var/lib/docker/containers"
+
+      # Only change the left hand side of these mounts (the host),
+      # unless you know what you are doing.
+      # This is to keep core.json configuration as simple as possible.
+      - "./daemon/config:/srv/daemon/config"
+      - "./daemon/data:/srv/daemon-data"
+      - "./daemon/tmp:/tmp/pterodactyl"
+
+    ports:
+      - 2022:2022
+      - 8080:8080
