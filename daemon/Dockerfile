@@ -22,7 +22,7 @@ RUN curl -L https://github.com/pterodactyl/daemon/releases/download/${DAEMON_VER
 
 # Download sftp server
 RUN curl -Lo sftp-server https://github.com/pterodactyl/sftp-server/releases/download/${SFTP_VER}/sftp-server \
-	chmod +x sftp-server
+	&& chmod +x sftp-server
 
 # Copy supervisord conf and entrypoint
 COPY ./supervisord.conf /etc/supervisord.conf
