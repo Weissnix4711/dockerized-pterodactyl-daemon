@@ -27,7 +27,8 @@ RUN curl -Lo sftp-server https://github.com/pterodactyl/sftp-server/releases/dow
 # Copy supervisord conf and entrypoint
 COPY ./supervisord.conf /etc/supervisord.conf
 COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # Entrypoint and command
-ENTRYPOINT [ "/bin/tini", "/entrypoint.sh" ]
+ENTRYPOINT [ "/sbin/tini", "/entrypoint.sh" ]
 CMD [ "supervisord", "-n", "-c", "/etc/supervisord.conf" ]
