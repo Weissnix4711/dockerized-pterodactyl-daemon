@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Ensure correct directory
 cd /srv/daemon
 
