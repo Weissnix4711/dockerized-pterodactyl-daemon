@@ -19,6 +19,7 @@ services:
       # as they are needed for the daemon to function properly.
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "/var/lib/docker/containers:/var/lib/docker/containers"
+      - "/etc/timezone:/etc/timezone"
 
       # Only change the left hand side of these mounts (the host),
       # unless you know what you are doing.
