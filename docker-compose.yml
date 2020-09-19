@@ -26,6 +26,26 @@ services:
       - "./daemon/data:/srv/daemon-data"
       - "./daemon/tmp:/tmp/pterodactyl"
 
+      # Certbot
+      - "./certbot/conf:/etc/letsencrypt"
+
     ports:
       - 2022:2022
       - 8080:8080
+
+  #############
+  ## CERTBOT ##
+  #############
+
+  certbot:
+
+    image: certbot/certbot
+    restart: unless-stopped
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew --standalone; sleep 12h & wait $${!}; done;'"
+
+    volumes:
+      - "./certbot/conf:/etc/letsencrypt"
+
+    # Necessary for validation
+    ports:
+      - 80:80

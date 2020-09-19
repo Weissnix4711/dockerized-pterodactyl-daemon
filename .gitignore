@@ -1,3 +1,4 @@
 /daemon/config/*
 /daemon/data/*
 /daemon/tmp/*
+/certbot/conf/*
