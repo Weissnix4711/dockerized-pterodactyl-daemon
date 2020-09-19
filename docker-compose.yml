@@ -12,6 +12,7 @@ services:
       args:
         daemon_ver: v0.6.13
         sftp_ver: v1.0.5
+    restart: unless-stopped
 
     volumes:
       # The following volumes must not be edited,
