@@ -24,6 +24,12 @@ RUN curl -L https://github.com/pterodactyl/daemon/releases/download/${DAEMON_VER
 RUN curl -Lo sftp-server https://github.com/pterodactyl/sftp-server/releases/download/${SFTP_VER}/sftp-server \
 	&& chmod +x sftp-server
 
+# User and group
+RUN addgroup -S pterodactyl && adduser -S -D -H -G pterodactyl -s /bin/false pterodactyl
+
+# npm
+RUN npm install --production
+
 # Copy supervisord conf and entrypoint
 COPY ./supervisord.conf /etc/supervisord.conf
 COPY ./entrypoint.sh /entrypoint.sh
