@@ -21,12 +21,12 @@ services:
       - "/var/lib/docker/containers:/var/lib/docker/containers"
       - "/etc/timezone:/etc/timezone"
 
-      # Only change the left hand side of these mounts (the host),
-      # unless you know what you are doing.
-      # This is to keep core.json configuration as simple as possible.
-      - "./daemon/config:/srv/daemon/config"
-      - "./daemon/data:/srv/daemon-data"
-      - "./daemon/tmp:/tmp/pterodactyl"
+      # These mount points must be identical on host and container.
+      # To keep core.json configuration as simple as possible,
+      # I would suggest to leave them at the following locations:
+      - "/srv/daemon/config:/srv/daemon/config"
+      - "/srv/daemon-data:/srv/daemon-data"
+      - "/tmp/pterodactyl:/tmp/pterodactyl"
 
       # Certbot
       - "./certbot/conf:/etc/letsencrypt"
